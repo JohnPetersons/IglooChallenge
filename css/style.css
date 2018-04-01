@@ -105,6 +105,11 @@ a,.spacer,.bannerSlide,#stories {
 	height: 200px;
 	overflow: hidden;
 }
+#newsContainer {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: warp;
+}
 #content {
 	width: 100%;
 	height: auto;
