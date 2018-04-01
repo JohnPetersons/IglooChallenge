@@ -26,9 +26,6 @@ window.onload = function(){
 		},{
 			title: "Title 2",
 			text: "Text 2"
-		},{
-			title: "Title 3",
-			text: "Text 3"
 		}]
 	}
 
