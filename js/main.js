@@ -36,19 +36,17 @@ window.onload = function(){
 // Is used by both AutoNext and SelectNext.
 function Next(currentId){
 	var current = document.getElementById("banner" + currentId);
-	current.style.opacity = 0;
 	current.classList.remove("fadeIn");
 	current.classList.add("fadeOut");
 	var hide = function(){
 		var nextId = (currentId + 1) % bannerStates;
 		var next = document.getElementById("banner" + nextId);
-		next.style.display = "none";
-		next.style.display = "block";
+		current.classList.add("noDisplay");
 		next.classList.remove("fadeOut");
 		next.classList.add("fadeIn");
-		next.style.opacity = 1;
-		document.getElementById('circle' + currentId).style.display = "block";
-		document.getElementById('circle' + nextId).style.display = "none";
+		next.classList.remove("noDisplay");
+		document.getElementById('circle' + currentId).classList.remove("noDisplay");
+		document.getElementById('circle' + nextId).classList.add("noDisplay");
 	};
 	setTimeout(function() {hide();}, 1000);
 	
@@ -69,14 +67,15 @@ function SelectNext(currentId){
 // Builds the html for the stories that are visible on the web page.
 function AddStory(jsonObj){
 	var spacer = document.createElement("div");
+	var header = document.createElement("header");
 	var news = document.createElement("div");
 	news.classList.add("news");
 	var date = document.createElement("h1");
 	date.classList.add("date");
 	date.innerHTML = jsonObj.date;
-	var header = document.createElement("h4");
-	header.classList.add("newsHeader");
-	header.innerHTML = jsonObj.header;
+	var title = document.createElement("h4");
+	title.classList.add("newsHeader");
+	title.innerHTML = jsonObj.header;
 	var img = document.createElement("img");
 	img.classList.add("newsImg");
 	img.src = jsonObj.img;
@@ -85,8 +84,9 @@ function AddStory(jsonObj){
 	var readMore = document.createElement("a");
 	readMore.innerHTML = "Read More";
 	readMore.href = "#";
-	readMore.style.display = "block";
-	news.appendChild(date);
+	readMore.classList.add("blockDisplay");
+	header.appendChild(date);
+	header.appendChild(title);
 	news.appendChild(header);
 	news.appendChild(img);
 	news.appendChild(text);
@@ -108,7 +108,7 @@ function SetBanner(jsonObj){
 		bannerDiv.id = "banner" + i;
 		bannerDiv.onclick = "SelectNext(" + i + ")";
 		if (i != 0)
-			bannerDiv.style.display = "none";
+			bannerDiv.classList.add("noDisplay");
 		var bannerTitle = document.createElement("div");
 		bannerTitle.innerHTML = jsonObj.items[i].title;
 		bannerTitle.className = "bannerText";
@@ -134,6 +134,6 @@ function SetBanner(jsonObj){
 	}
 	document.getElementById("banner").appendChild(svg);
 	if (jsonObj.items.length > 0){
-		document.getElementById("circle0").style.display = "none";
+		document.getElementById("circle0").classList.add("noDisplay");
 	}
 }
