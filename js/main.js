@@ -68,6 +68,7 @@ function SelectNext(currentId){
 function AddStory(jsonObj){
 	var spacer = document.createElement("div");
 	var header = document.createElement("header");
+	header.classList.add("blockDisplay");
 	var news = document.createElement("div");
 	news.classList.add("news");
 	var date = document.createElement("h1");
@@ -90,8 +91,8 @@ function AddStory(jsonObj){
 	news.appendChild(header);
 	news.appendChild(img);
 	news.appendChild(text);
+	news.appendChild(readMore);
 	spacer.appendChild(news);
-	spacer.appendChild(readMore);
 	document.getElementById("newsContainer").appendChild(spacer);	
 }
 

@@ -119,6 +119,9 @@ a:hover {
 	justify-content: space-between;
 	flex-wrap: warp;
 }
+header {
+	width: 300px;
+}
 #content {
 	width: 100%;
 	height: auto;
